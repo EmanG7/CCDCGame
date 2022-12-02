@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<title>index</title>
+	<style>
+		html {
+			background: #141414;
+			color: #fff;
+		}
+		div {
+			margin: .5em;
+			padding: .25em 1em;
+		}
+		input {
+			background: #cb232c;
+			color: #fff;
+		}
+		.parent {
+			text-align: center;
+		}
+		.child {
+			display: inline-block;
+		}
+		.select {
+			width: 200px;
+			height: 180px;
+		}
+	</style>
+	</head>
+	<body>
+		<div>
+			<center><h1>Select Position</h1></center>
+		</div>
+		<div class = "parent">
+			<div class = "child"><form method = "POST" action = "/windows"><input class = "select" type = "submit" name = "windows" value="Windows"></form></div>
+			<div class = "child"><form method = "POST" action = "/linux"><input class = "select" type = "submit" name = "linux" value="Linux"></form></div>
+		</div>
+		<div class = "parent">
+			<div class = "child"><form method = "POST" action = "/networking"><input class = "select" type = "submit" name = "networking" value="Networking"></form></div>
+			<div class = "child"><form method = "POST" action = "/liaison"><input class = "select" type = "submit" name = "liaison" value="Liaison"></form></div>
+		</div>
+		<div>
+			<center><form method = "POST" action = "/init">
+				<input style = "width: 80px; height: 30px;" type = "submit" name = "back" value="Back">
+			</form></center>
+		</div>
+	</body>
+</html>
