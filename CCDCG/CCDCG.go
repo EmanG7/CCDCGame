@@ -103,13 +103,13 @@ func networkingStart(w http.ResponseWriter, r *http.Request) {
 	*/
 }
 
-func liasonStart(w http.ResponseWriter, r *http.Request) {
+func liaisonStart(w http.ResponseWriter, r *http.Request) {
 	err := r.ParseForm()
 	if err != nil {
 		log.Fatal(err)
 	}
 	current.question = "test"
-	tmpl, err := template.ParseFiles("html/liason.html")
+	tmpl, err := template.ParseFiles("html/liaison.html")
 	if err != nil {
 		log.Println(err)
 		return
@@ -155,7 +155,7 @@ func main() {
 	http.HandleFunc("/", initH)
 	http.HandleFunc("/index", loginH)
 	http.HandleFunc("/networking", networkingStart)
-	http.HandleFunc("/liason", liasonStart)
+	http.HandleFunc("/liaison", liaisonStart)
 	http.HandleFunc("/windows", windowsStart)
 	http.HandleFunc("/linux", linuxStart)
 
