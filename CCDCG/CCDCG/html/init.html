@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<style>
+		html {
+			background: #141414;
+		}
+		div {
+			margin: .5em 1em;
+			padding: .25em 1em;
+		}
+		.header {
+			background: #cb232c;
+			color: #ffffff;
+			text-align: center;
+		}
+		.login {
+			text-align: center;
+		}
+		.uput {
+			border: 0;
+			padding: .5em .2em;
+		}
+		.bttn {
+			width: 80px;
+			height: 30px;
+			background: #cb232c;
+			color: #fff;
+		}
+	</style>
+	<head>
+		<title>init</title>
+		<div class = "header">
+			<h1>Collegiate Cyber Defense Competition Game</h1>
+			<h5>by Weston Cottrell, Elijah Iverson, Suzie Luehmann, & Matthew Vollmar</h5>
+		</div>
+	</head>
+	<body>
+		<div class = "login">
+			<form method = "POST" action = "/index">
+				<p><input class = "uput" type = "text" name = "uname" value = "" placeholder = "Player 1" required></p>
+				<input class = "bttn" type = "submit" name = "commit" value = "Start">
+			</form>
+		</div>
+	</body>
+</html>
