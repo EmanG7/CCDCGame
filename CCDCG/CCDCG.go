@@ -281,10 +281,10 @@ func totalTime(startT int, stopT int, today int, nextday int) int {
 }
 
 func questionGen(index int) string {
-	network := [4]string{"network1","network2","network3","Game Over press done or back for more questions"}
-	liaison := [4]string{"liai1","liai2","liai3","Game Over press done or back for more questions"}
-	windows := [4]string{"win1","win2","win3","Game Over press done or back for more questions"}
-	linux := [4]string{"linux1","linux2","linux3","Game Over press done or back for more questions"}
+	network := [4]string{"network1","network2","network3","Game Over, press the done button"}
+	liaison := [4]string{"liai1","liai2","liai3","Game Over, press the done button"}
+	windows := [4]string{"win1","win2","win3","Game Over, press the done button"}
+	linux := [4]string{"linux1","linux2","linux3","Game Over, press the done button"}
 	var results string
 	if (index / 10) == 0 {
 		results = network[index%10]
