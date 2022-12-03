@@ -282,7 +282,7 @@ func totalTime(startT int, stopT int, today int, nextday int) int {
 
 func questionGen(index int) string {
 	network := [4]string{"network1","network2","network3","Game Over, press the done button"}
-	liaison := [4]string{"liai1","liai2","liai3","Game Over, press the done button"}
+	liaison := [4]string{"What format do you submit an inject as?","Which specialist would you task with Restriction of Facebook for all users?","Which distro is typically used as the centralized logging hub?","Game Over, press the done button"}
 	windows := [4]string{"win1","win2","win3","Game Over, press the done button"}
 	linux := [4]string{"linux1","linux2","linux3","Game Over, press the done button"}
 	var results string
@@ -302,7 +302,7 @@ func questionGen(index int) string {
 
 func answerGen(index int) string {
 	network := [3]string{"networkanswer1","networkanswer2","networkanswer3"}
-	liaison := [3]string{"liai1","liai2","liai3"}
+	liaison := [3]string{"PDF","Network Specialist","Splunk"}
 	windows := [3]string{"win1","win2","win3"}
 	linux := [3]string{"linux1","linux2","linux3"}
 	var results string
