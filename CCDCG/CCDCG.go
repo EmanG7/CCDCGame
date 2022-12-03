@@ -1,12 +1,10 @@
 package main
 
 import (
-	//"fmt"
 	"html/template"
 	"log"
 	"net/http"
 	"os/exec"
-	"time"
 )
 
 //Custom variables
@@ -33,18 +31,6 @@ func initH(w http.ResponseWriter, r *http.Request) {
 	if err := tmpl.Execute(w,nil); err != nil {
 		log.Println(err)
 	}
-	/*
-	for {
-		_, err := fmt.Fprint(w, " ")
-		if err != nil {
-			log.Fatal("client is gone, shutting down")
-			return
-		}
-		flusher := w.(http.Flusher)
-		flusher.Flush()
-		time.Sleep(time.Second)
-	}
-	*/
 }
 
 func loginH(w http.ResponseWriter, r *http.Request) {
@@ -63,18 +49,6 @@ func loginH(w http.ResponseWriter, r *http.Request) {
 	if err := tmpl.Execute(w,current.username); err != nil {
 		log.Println(err)
 	}
-	/*
-	for {
-		_, err := fmt.Fprint(w, " ")
-		if err != nil {
-			log.Fatal("client is gone, shutting down")
-			return
-		}
-		flusher := w.(http.Flusher)
-		flusher.Flush()
-		time.Sleep(time.Second)
-	}
-	*/
 }
 
 func networkingStart(w http.ResponseWriter, r *http.Request) {
@@ -98,18 +72,6 @@ func networkingStart(w http.ResponseWriter, r *http.Request) {
 	if err := tmpl.Execute(w,current.question); err != nil {
 		log.Println(err)
 	}
-	/*
-	for {
-		_, err := fmt.Fprint(w, " ")
-		if err != nil {
-			log.Fatal("client is gone, shutting down")
-			return
-		}
-		flusher := w.(http.Flusher)
-		flusher.Flush()
-		time.Sleep(time.Second)
-	}
-	*/
 }
 func liaisonStart(w http.ResponseWriter, r *http.Request) {
 	err := r.ParseForm()
@@ -132,18 +94,6 @@ func liaisonStart(w http.ResponseWriter, r *http.Request) {
 	if err := tmpl.Execute(w,current.question); err != nil {
 		log.Println(err)
 	}
-	/*
-	for {
-		_, err := fmt.Fprint(w, " ")
-		if err != nil {
-			log.Fatal("client is gone, shutting down")
-			return
-		}
-		flusher := w.(http.Flusher)
-		flusher.Flush()
-		time.Sleep(time.Second)
-	}
-	*/
 }
 func windowsStart(w http.ResponseWriter, r *http.Request) {
 	err := r.ParseForm()
@@ -166,18 +116,6 @@ func windowsStart(w http.ResponseWriter, r *http.Request) {
 	if err := tmpl.Execute(w,current.question); err != nil {
 		log.Println(err)
 	}
-	/*
-	for {
-		_, err := fmt.Fprint(w, " ")
-		if err != nil {
-			log.Fatal("client is gone, shutting down")
-			return
-		}
-		flusher := w.(http.Flusher)
-		flusher.Flush()
-		time.Sleep(time.Second)
-	}
-	*/
 }
 
 func linuxStart(w http.ResponseWriter, r *http.Request) {
@@ -201,18 +139,6 @@ func linuxStart(w http.ResponseWriter, r *http.Request) {
 	if err := tmpl.Execute(w,current.question); err != nil {
 		log.Println(err)
 	}
-	/*
-	for {
-		_, err := fmt.Fprint(w, " ")
-		if err != nil {
-			log.Fatal("client is gone, shutting down")
-			return
-		}
-		flusher := w.(http.Flusher)
-		flusher.Flush()
-		time.Sleep(time.Second)
-	}
-	*/
 }
 
 func scoreboard(w http.ResponseWriter, r *http.Request) {
@@ -228,18 +154,6 @@ func scoreboard(w http.ResponseWriter, r *http.Request) {
 	if err := tmpl.Execute(w, current.score); err != nil {
 		log.Println(err)
 	}
-	/*
-	for {
-		_, err := fmt.Fprint(w, " ")
-		if err != nil {
-			log.Fatal("client is gone, shutting down")
-			return
-		}
-		flusher := w.(http.Flusher)
-		flusher.Flush()
-		time.Sleep(time.Second)
-	}
-	*/
 }
 
 func main() {
@@ -263,22 +177,6 @@ func main() {
 	log.Fatal(http.ListenAndServe(":8000", nil))
 }
 //End of main system
-
-//Timer
-func checkTime() (int,int){
-	t := time.Now()
-	h := t.Hour()
-	m := t.Minute()
-	s := t.Second()
-	return (h * 360) + (m * 60) + s, t.Day()
-}
-
-func totalTime(startT int, stopT int, today int, nextday int) int {
-	if today < nextday {
-		stopT = stopT + (24*360)
-	}
-	return stopT - startT
-}
 
 func questionGen(index int) string {
 	network := [4]string{"network1","network2","network3","Game Over, press the done button"}
