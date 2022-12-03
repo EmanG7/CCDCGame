@@ -9,40 +9,40 @@ import (
 	"time"
 )
 
-//Custom variables
+// Custom variables
 type player struct {
-	username string
-	question string
+	username      string
+	question      string
 	questionindex int
-	score int
-	timestart int
-	daycheck int
+	score         int
+	timestart     int
+	daycheck      int
 }
 
-//Declaration of custom variables
+// Declaration of custom variables
 var current player
 
-//Start of main system.
+// Start of main system.
 func initH(w http.ResponseWriter, r *http.Request) {
 	tmpl, err := template.ParseFiles("html/init.html")
 	if err != nil {
 		log.Println(err)
 		return
 	}
-	if err := tmpl.Execute(w,nil); err != nil {
+	if err := tmpl.Execute(w, nil); err != nil {
 		log.Println(err)
 	}
 	/*
-	for {
-		_, err := fmt.Fprint(w, " ")
-		if err != nil {
-			log.Fatal("client is gone, shutting down")
-			return
+		for {
+			_, err := fmt.Fprint(w, " ")
+			if err != nil {
+				log.Fatal("client is gone, shutting down")
+				return
+			}
+			flusher := w.(http.Flusher)
+			flusher.Flush()
+			time.Sleep(time.Second)
 		}
-		flusher := w.(http.Flusher)
-		flusher.Flush()
-		time.Sleep(time.Second)
-	}
 	*/
 }
 
@@ -58,20 +58,20 @@ func loginH(w http.ResponseWriter, r *http.Request) {
 		log.Println(err)
 		return
 	}
-	if err := tmpl.Execute(w,current.username); err != nil {
+	if err := tmpl.Execute(w, current.username); err != nil {
 		log.Println(err)
 	}
 	/*
-	for {
-		_, err := fmt.Fprint(w, " ")
-		if err != nil {
-			log.Fatal("client is gone, shutting down")
-			return
+		for {
+			_, err := fmt.Fprint(w, " ")
+			if err != nil {
+				log.Fatal("client is gone, shutting down")
+				return
+			}
+			flusher := w.(http.Flusher)
+			flusher.Flush()
+			time.Sleep(time.Second)
 		}
-		flusher := w.(http.Flusher)
-		flusher.Flush()
-		time.Sleep(time.Second)
-	}
 	*/
 }
 
@@ -86,27 +86,78 @@ func networkingStart(w http.ResponseWriter, r *http.Request) {
 		log.Println(err)
 		return
 	}
-	if err := tmpl.Execute(w,current.question); err != nil {
+	if err := tmpl.Execute(w, current.question); err != nil {
 		log.Println(err)
 	}
 	/*
-	for {
-		_, err := fmt.Fprint(w, " ")
-		if err != nil {
-			log.Fatal("client is gone, shutting down")
-			return
+		for {
+			_, err := fmt.Fprint(w, " ")
+			if err != nil {
+				log.Fatal("client is gone, shutting down")
+				return
+			}
+			flusher := w.(http.Flusher)
+			flusher.Flush()
+			time.Sleep(time.Second)
 		}
-		flusher := w.(http.Flusher)
-		flusher.Flush()
-		time.Sleep(time.Second)
-	}
 	*/
+}
+
+func liasonStart(w http.ResponseWriter, r *http.Request) {
+	err := r.ParseForm()
+	if err != nil {
+		log.Fatal(err)
+	}
+	current.question = "test"
+	tmpl, err := template.ParseFiles("html/liason.html")
+	if err != nil {
+		log.Println(err)
+		return
+	}
+	if err := tmpl.Execute(w, current.question); err != nil {
+		log.Println(err)
+	}
+}
+
+func windowsStart(w http.ResponseWriter, r *http.Request) {
+	err := r.ParseForm()
+	if err != nil {
+		log.Fatal(err)
+	}
+	current.question = "test"
+	tmpl, err := template.ParseFiles("html/windows.html")
+	if err != nil {
+		log.Println(err)
+		return
+	}
+	if err := tmpl.Execute(w, current.question); err != nil {
+		log.Println(err)
+	}
+}
+
+func linuxStart(w http.ResponseWriter, r *http.Request) {
+	err := r.ParseForm()
+	if err != nil {
+		log.Fatal(err)
+	}
+	current.question = "test"
+	tmpl, err := template.ParseFiles("html/linux.html")
+	if err != nil {
+		log.Println(err)
+		return
+	}
+	if err := tmpl.Execute(w, current.question); err != nil {
+		log.Println(err)
+	}
 }
 
 func main() {
 	http.HandleFunc("/", initH)
 	http.HandleFunc("/index", loginH)
 	http.HandleFunc("/networking", networkingStart)
+	http.HandleFunc("/liason", liasonStart)
+	http.HandleFunc("/windows", windowsStart)
+	http.HandleFunc("/linux", linuxStart)
 
 	go func() {
 		<-time.After(100 * time.Millisecond)
@@ -119,10 +170,11 @@ func main() {
 	log.Println("running at port 127.0.0.1:8000")
 	log.Fatal(http.ListenAndServe(":8000", nil))
 }
+
 //End of main system
 
-//Timer
-func checkTime() (int,int){
+// Timer
+func checkTime() (int, int) {
 	t := time.Now()
 	h := t.Hour()
 	m := t.Minute()
@@ -132,16 +184,16 @@ func checkTime() (int,int){
 
 func totalTime(startT int, stopT int, today int, nextday int) int {
 	if today < nextday {
-		stopT = stopT + (24*360)
+		stopT = stopT + (24 * 360)
 	}
 	return stopT - startT
 }
 
 func questionGen(index int) string {
-	network := [3]string{"question1","question2","question3"}
-	liaison := [3]string{"question1","question2","question3"}
-	windows := [3]string{"question1","question2","question3"}
-	linux := [3]string{"question1","question2","question3"}
+	network := [3]string{"question1", "question2", "question3"}
+	liaison := [3]string{"question1", "question2", "question3"}
+	windows := [3]string{"question1", "question2", "question3"}
+	linux := [3]string{"question1", "question2", "question3"}
 	var results string
 	if (index / 10) == 0 {
 		results := network[index%10]
