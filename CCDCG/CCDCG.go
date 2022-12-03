@@ -111,6 +111,109 @@ func networkingStart(w http.ResponseWriter, r *http.Request) {
 	}
 	*/
 }
+func liaisonStart(w http.ResponseWriter, r *http.Request) {
+	err := r.ParseForm()
+	if err != nil {
+		log.Fatal(err)
+	}
+	current.entry = r.PostForm.Get("entry")
+	if current.entry != "" { scorer() }
+	if (current.questionindex / 10) != 1 {
+		current.questionindex = 10
+	} else {
+		current.questionindex += 1
+	}
+	current.question = questionGen(current.questionindex)
+	tmpl, err := template.ParseFiles("html/liaison.html")
+	if err != nil {
+		log.Println(err)
+		return
+	}
+	if err := tmpl.Execute(w,current.question); err != nil {
+		log.Println(err)
+	}
+	/*
+	for {
+		_, err := fmt.Fprint(w, " ")
+		if err != nil {
+			log.Fatal("client is gone, shutting down")
+			return
+		}
+		flusher := w.(http.Flusher)
+		flusher.Flush()
+		time.Sleep(time.Second)
+	}
+	*/
+}
+func windowsStart(w http.ResponseWriter, r *http.Request) {
+	err := r.ParseForm()
+	if err != nil {
+		log.Fatal(err)
+	}
+	current.entry = r.PostForm.Get("entry")
+	if current.entry != "" { scorer() }
+	if (current.questionindex / 10) != 2 {
+		current.questionindex = 20
+	} else {
+		current.questionindex += 1
+	}
+	current.question = questionGen(current.questionindex)
+	tmpl, err := template.ParseFiles("html/windows.html")
+	if err != nil {
+		log.Println(err)
+		return
+	}
+	if err := tmpl.Execute(w,current.question); err != nil {
+		log.Println(err)
+	}
+	/*
+	for {
+		_, err := fmt.Fprint(w, " ")
+		if err != nil {
+			log.Fatal("client is gone, shutting down")
+			return
+		}
+		flusher := w.(http.Flusher)
+		flusher.Flush()
+		time.Sleep(time.Second)
+	}
+	*/
+}
+
+func linuxStart(w http.ResponseWriter, r *http.Request) {
+	err := r.ParseForm()
+	if err != nil {
+		log.Fatal(err)
+	}
+	current.entry = r.PostForm.Get("entry")
+	if current.entry != "" { scorer() }
+	if (current.questionindex / 10) != 3 {
+		current.questionindex = 30
+	} else {
+		current.questionindex += 1
+	}
+	current.question = questionGen(current.questionindex)
+	tmpl, err := template.ParseFiles("html/linux.html")
+	if err != nil {
+		log.Println(err)
+		return
+	}
+	if err := tmpl.Execute(w,current.question); err != nil {
+		log.Println(err)
+	}
+	/*
+	for {
+		_, err := fmt.Fprint(w, " ")
+		if err != nil {
+			log.Fatal("client is gone, shutting down")
+			return
+		}
+		flusher := w.(http.Flusher)
+		flusher.Flush()
+		time.Sleep(time.Second)
+	}
+	*/
+}
 
 func scoreboard(w http.ResponseWriter, r *http.Request) {
 	err := r.ParseForm()
@@ -143,6 +246,9 @@ func main() {
 	http.HandleFunc("/", initH)
 	http.HandleFunc("/index", loginH)
 	http.HandleFunc("/networking", networkingStart)
+	http.HandleFunc("/liaison", liaisonStart)
+	http.HandleFunc("/windows", windowsStart)
+	http.HandleFunc("/linux", linuxStart)
 	http.HandleFunc("/scoreboard", scoreboard)
 
 	go func() {
