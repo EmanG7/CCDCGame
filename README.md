@@ -14,6 +14,8 @@ No starter code, all made from scratch.
 
 CCDCGame/
 
+README.md
+
 /CCDCG/
 
 /CCDCG.go
