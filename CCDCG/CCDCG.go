@@ -179,7 +179,7 @@ func main() {
 //End of main system
 
 func questionGen(index int) string {
-	network := [4]string{"network1","network2","network3","Game Over, press the done button"}
+	network := [4]string{"What command do you use on Cisco network devices to set a minimum length of \"5\" for passwords ","What command do you use on Cisco network devices to show QOS Map?","What command do you use in the Palo Alto Network's CLI to set up the management interface with an ip address of \"172.16.1.100\", a subnet of \"255.255.255.0\", a default gateway of \"172.16.1.1\", and a primary DNS server of \"8.8.8.8\"?","Game Over, press the done button"}
 	liaison := [4]string{"What format do you submit an inject as?","Which specialist would you task with Restriction of Facebook for all users?","Which distro is typically used as the centralized logging hub?","Game Over, press the done button"}
 	windows := [4]string{"Use Powershell command to clear all exisiting Firewall Rules","Use Powershell commands to enable the firewall","Use Powershell commands to set the default firewall policy to block all traffic","Game Over, press the done button"}
 	linux := [4]string{"Command to Delete all iptables","Command to Accept Outbound TCP traffic on ports 80 and 443","Command to stop SSH service","Game Over, press the done button"}
@@ -199,7 +199,7 @@ func questionGen(index int) string {
 }
 
 func answerGen(index int) string {
-	network := [3]string{"networkanswer1","networkanswer2","networkanswer3"}
+	network := [3]string{"security passwords min-length 5","show mls qos maps","set deviceconfig system ip-address 172.16.1.100 netmask 255.255.255.0 default-gateway 172.16.1.1 dns-setting servers primary 8.8.8.8"}
 	liaison := [3]string{"PDF","Network Specialist","Splunk"}
 	windows := [3]string{"netsh advfirewall firewall delete rule name= \"all\"","Netsh advfirewall set currentprofile state on","Netsh advfirewall set allprofiles firewallpolicy \"blockinbound,blockoutbound\""}
 	linux := [3]string{"iptables -D","iptables -A OUTPUT -p tcp -m multiport -dports 80,443 -j ACCEPT","service sshd stop"}
