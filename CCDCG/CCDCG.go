@@ -5,6 +5,7 @@ import (
 	"log"
 	"net/http"
 	"os/exec"
+	"time"
 )
 
 //Custom variables
@@ -14,8 +15,6 @@ type player struct {
 	questionindex int
 	entry string
 	score int
-	timestart int
-	daycheck int
 }
 
 //Declaration of custom variables
@@ -173,7 +172,7 @@ func main() {
 		}
 	}()
 
-	log.Println("running at port 127.0.0.1:8000")
+	//log.Println("running at port 127.0.0.1:8000")
 	log.Fatal(http.ListenAndServe(":8000", nil))
 }
 //End of main system
